@@ -23,9 +23,13 @@ const locationThunk = async (lokasi, thunkAPI) => {
 };
 const jadwalThunk = async (lokasi, thunkAPI) => {
   try {
-    const resp = await customFetchJadwal(`${lokasi || lokasi}.json`);
+    let date = new Date();
+    const resp = await customFetchJadwal(`${lokasi}/${date.getFullYear()}/${date.getMonth() < 10 ? `0${date.getMonth()}` : date.getMonth()}.json`);
 
-    return resp.data;
+    const data = Object.entries(resp.data).find((item) => {
+      return +item[0] + 1 === date.getDate();
+    });
+    return data[1];
   } catch (error) {
     return thunkAPI.rejectWithValue(error.response.data.message);
   }
@@ -80,15 +84,11 @@ export const jadwalSlice = createSlice({
       .addCase(getJadwalSholat.fulfilled, (state, action) => {
         state.isLoading = false;
         state.jadwalSholat = action.payload;
-        if (action.payload.status_code === 0) {
-          state.error = 1;
-          state.errorMessage = action.payload.status_error.invalid_query;
-          state.search = '';
-        }
       })
-      .addCase(getJadwalSholat.rejected, (state, action) => {
+      .addCase(getJadwalSholat.rejected, (state) => {
         state.isLoading = false;
         state.error = 1;
+        state.errorMessage = 'Cannot find your city try another city !';
       })
       .addCase(getGeolocation.pending, (state) => {
         state.isLoading = true;

@@ -43,7 +43,6 @@ const JadwalSholat = () => {
   }, [currentLocation]);
 
   if (isLoading) return <Loading />;
-  if (error) return <Error msg={errorMessage} />;
   return (
     <main className="container-jadwal">
       <SearchBar title="Lokasi" />
@@ -70,19 +69,17 @@ const JadwalSholat = () => {
           </section>
 
           <ul>
-            {Object.keys(jadwalSholat).length > 0 ? (
-              Object.entries(jadwalSholat?.items[0])?.map(([key, value]) => {
-                if (key !== 'date_for')
-                  return (
-                    <li key={key}>
-                      <h3>{key}</h3>
-                      <p>{convert12HourTo24Hour(value)}</p>
-                    </li>
-                  );
-              })
-            ) : (
-              <Loading />
-            )}
+            {Object.entries(jadwalSholat).length > 0
+              ? Object.entries(jadwalSholat).map((key, value) => {
+                  if (key[0] !== 'tanggal')
+                    return (
+                      <li key={key[0]}>
+                        <h3>{key[0]}</h3>
+                        <p>{key[1]}</p>
+                      </li>
+                    );
+                })
+              : ''}
           </ul>
         </>
       )}

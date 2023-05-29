@@ -9,11 +9,7 @@ export const customFetchDoa = axios.create({
 });
 
 export const customFetchJadwal = axios.create({
-  baseURL: 'https://muslimsalat.p.rapidapi.com/',
-  headers: {
-    'X-RapidAPI-Host': 'muslimsalat.p.rapidapi.com',
-    'X-RapidAPI-Key': import.meta.env.VITE_APP_RAPID_API_KEY,
-  },
+  baseURL: 'https://cdn.statically.io/gh/lakuapik/jadwalsholatorg/master/adzan/',
 });
 
 export const customFetchGeolocation = axios.create({
