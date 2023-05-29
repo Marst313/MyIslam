@@ -1,0 +1,63 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  .font-outline-2 {
+    text-shadow: 1px 3px 1px black;
+  }
+  .font-outline-4 {
+    text-shadow: 0px 5px 1px black;
+  }
+  .shadow-custom {
+    box-shadow: 5px 5px black;
+  }
+  .shadow-page {
+    box-shadow: 3px 3px #19a7ce, 6px 6px #0f5d73;
+  }
+  .flex-center {
+    @apply flex justify-center items-center;
+  }
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  -webkit-text-fill-color: white;
+  -webkit-box-shadow: 0 0 0px 1000px #253341 inset;
+  box-shadow: 0 0 0px 1000px #253341 inset;
+  transition: background-color 5000s ease-in-out 0s;
+  color: white;
+}
+
+:root {
+  --blue-dark: 10 4 45;
+  --white: 241 242 246;
+}
+*,
+::after,
+::before {
+  box-sizing: border-box;
+}
+
+body {
+  @apply bg-primaryBg;
+}
+
+h1 {
+  @apply text-3xl font-bold text-lightBlue;
+}
+
+h2 {
+  @apply text-lg font-semibold text-cyan text-center;
+}
+
+hr {
+  @apply border-b-4 border-blueDark  w-full mb-2 shadow-lg shadow-white;
+}
