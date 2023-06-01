@@ -21,13 +21,13 @@
   @apply bottom-4 bg-lightBlue bg-opacity-70  rounded-sm  backdrop-blur-sm p-2 right-5 hover:bg-opacity-50 fixed cursor-pointer z-[1] transition-all shadow-custom font-bold translate-y-[100px];
 }
 .container-sidebar {
-  @apply hidden  lg:w-[20%] bg-blueDark lg:h-full transition-all duration-1000 lg:flex-center z-10 fixed border-e-4 border-lightBlue2;
+  @apply hidden  lg:w-[20%] backdrop-blur-sm dark:bg-blueDark lg:h-full transition-all duration-1000 lg:flex-center z-10 fixed border-e-4 dark:border-lightBlue2;
 }
 .container-sidebar > button {
   @apply absolute right-5 top-5;
 }
 .container-sidebar > button > svg {
-  @apply text-cyan w-12 h-12;
+  @apply text-blueDark dark:text-cyan w-12 h-12;
 }
 
 /* NAVBAR */

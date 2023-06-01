@@ -7,13 +7,14 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/landing" element={<Landing />} />
+        <Route path="/*" element={<Error />} />
+
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<Surat />} />
           <Route path="surat/:id" element={<OpenSurat />} />
           <Route path="doa" element={<Doa />} />
           <Route path="jadwal-sholat" element={<JadwalSholat />} />
-          <Route path="landing" element={<Landing />} />
-          <Route path="*" element={<Error />} />
         </Route>
       </Routes>
     </BrowserRouter>
