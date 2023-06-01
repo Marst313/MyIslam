@@ -12,9 +12,9 @@ function App() {
           <Route path="surat/:id" element={<OpenSurat />} />
           <Route path="doa" element={<Doa />} />
           <Route path="jadwal-sholat" element={<JadwalSholat />} />
+          <Route path="landing" element={<Landing />} />
+          <Route path="*" element={<Error />} />
         </Route>
-        <Route path="landing" element={<Landing />} />
-        <Route path="*" element={<Error />} />
       </Routes>
     </BrowserRouter>
   );
