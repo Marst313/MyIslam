@@ -25,7 +25,7 @@ const PaginationSurat = () => {
       <ul>
         {Array.from({ length: Math.ceil(surat.length / 10) }).map((_, index) => (
           <li key={index}>
-            <button className={`${currentPage === index + 1 ? 'bg-cyan shadow-page text-blueDark ' : 'bg-white/80 hover:bg-cyan '} `} onClick={handleClickPage}>
+            <button className={`${currentPage === index + 1 ? 'bg-cyan shadow-page text-blueDark ' : 'bg-white/80 hover:bg-cyan dark:bg-blueDark/80 dark:text-white dark:hover:bg-blueDark2'} `} onClick={handleClickPage}>
               {index + 1}
             </button>
           </li>

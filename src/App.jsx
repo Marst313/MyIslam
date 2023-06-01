@@ -1,20 +1,13 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Surat, Doa, JadwalSholat, SharedLayout } from './pages/Main';
-import { ProtectedRoute, Landing, Error } from './pages';
+import { Landing, Error } from './pages';
 import OpenSurat from './components/OpenSurat';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route
-          path="/"
-          element={
-            <ProtectedRoute>
-              <SharedLayout />
-            </ProtectedRoute>
-          }
-        >
+        <Route path="/" element={<SharedLayout />}>
           <Route index element={<Surat />} />
           <Route path="surat/:id" element={<OpenSurat />} />
           <Route path="doa" element={<Doa />} />

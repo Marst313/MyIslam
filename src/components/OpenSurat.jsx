@@ -8,7 +8,7 @@ import Tafsir from '../pages/Main/Tafsir';
 
 const OpenSurat = () => {
   const { id } = useParams();
-  const { openSurat, isLoading, types } = useSelector((store) => store.surat);
+  const { openSurat, isLoading, types, isLoadingMusic } = useSelector((store) => store.surat);
   const dispatch = useDispatch();
 
   const list = {
@@ -20,7 +20,7 @@ const OpenSurat = () => {
     dispatch(getOneSurat(id));
   }, []);
 
-  if (isLoading) {
+  if (isLoading || isLoadingMusic) {
     return <Loading />;
   }
 

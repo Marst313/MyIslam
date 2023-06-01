@@ -1,12 +1,14 @@
 /* LANDING PAGE */
 .container-landing {
   @apply relative w-9/12 mx-auto bg-blue-50 h-[30rem] mt-10 rounded-2xl  shadow-sm;
-}
-.container-landing > .hero-img {
-  @apply w-60 mx-auto pt-44;
-}
-.container-landing button {
-  @apply text-white bg-blueDark p-2 px-6 rounded-xl mt-[4.6rem] lg:w-40 lg:h-12 lg:mt-[4rem] hover:bg-blue-300 hover:text-blueDark font-semibold;
+
+  & > .hero-img {
+    @apply w-60 mx-auto pt-44;
+  }
+
+  & button {
+    @apply text-white bg-blueDark dark:text-blueDark  dark:bg-lightBlue p-2 px-6 rounded-xl mt-[4.6rem] lg:w-40 lg:h-12 lg:mt-[4rem] dark:hover:bg-blueDark dark:hover:text-white hover:bg-lightBlue font-semibold hover:text-blueDark;
+  }
 }
 .hero-img ~ h2 {
   @apply max-w-xs mx-auto font-semibold mt-5 text-white text-xl lg:text-3xl;
@@ -14,8 +16,7 @@
 /* LANDING PAGE */
 
 /*SHARED PAGE  */
-.container-shared {
-}
+
 .container-shared .btn-goTop {
   @apply bottom-4 bg-lightBlue bg-opacity-70  rounded-sm  backdrop-blur-sm p-2 right-5 hover:bg-opacity-50 fixed cursor-pointer z-[1] transition-all shadow-custom font-bold translate-y-[100px];
 }
@@ -32,18 +33,23 @@
 /* NAVBAR */
 .nav {
   @apply p-5 flex justify-between lg:p-10 items-center w-full;
-}
-.nav > button > svg {
-  @apply w-10 h-10 lg:w-14 lg:h-14;
+
+  & h1 {
+    @apply text-blueDark2 dark:text-lightBlue;
+  }
+
+  & > button > svg {
+    @apply w-10 h-10 lg:w-14 lg:h-14 text-blueDark dark:text-cyan;
+  }
 }
 .nav-open {
-  @apply w-[80%] top-[10%] left-[50%] -translate-x-1/2  border-white border-[3px] rounded-sm h-[500px] fixed z-10 backdrop-blur-sm shadow-md flex-center lg:hidden;
+  @apply w-[80%] top-[10%] left-[50%] -translate-x-1/2 border-blueDark  dark:border-cyan border-[3px] rounded-sm h-[500px] fixed z-10 backdrop-blur-sm shadow-md flex-center lg:hidden;
 }
 .nav-open > button {
   @apply absolute right-0 top-0;
 }
 .nav-open > button > svg {
-  @apply w-12 h-12 text-cyan;
+  @apply w-12 h-12 dark:text-cyan;
 }
 /* NAVBAR */
 
@@ -61,7 +67,7 @@
   @apply w-5 h-5;
 }
 .search-container > input {
-  @apply w-full p-2 pl-16  rounded-lg focus:outline-cyan bg-blueDark text-white  focus:outline-double;
+  @apply w-full p-2 pl-16  rounded-lg focus:outline-cyan dark:bg-blueDark placeholder:dark:text-white/50  focus:outline-double bg-lightBg2 placeholder:text-blueDark;
 }
 /* SEARCH BAR */
 
@@ -82,7 +88,7 @@
   @apply flex-center flex-col relative;
 }
 .container-doa > button {
-  @apply bg-cyan text-blueDark rounded-sm shadow-custom transition-all p-1 px-3 my-5 font-semibold;
+  @apply bg-lightBlue text-white dark:bg-cyan dark:text-blueDark rounded-sm shadow-custom transition-all p-1 px-3 my-5 font-semibold;
 }
 .container-doa > section {
   @apply w-full;
@@ -92,27 +98,30 @@
 /* JADWAL PAGE */
 .container-jadwal {
   @apply flex-center flex-col h-full;
-}
-.container-jadwal > button {
-  @apply bg-cyan text-blueDark rounded-sm shadow-custom transition-all p-1 px-3 my-5 font-semibold;
-}
-.container-jadwal > section {
-  @apply w-full flex-center gap-5 lg:flex-col;
-}
-.container-jadwal > section > div {
-  @apply flex-center flex-col text-base text-white/70 font-outline-4 font-bold  flex-wrap;
-}
-.container-jadwal > ul {
-  @apply w-full flex-center flex-col mt-5 gap-5 lg:flex-row lg:flex-wrap;
-}
-.container-jadwal > ul > li {
-  @apply transition-all  flex-center flex-col bg-gradient-to-t from-white to-slate-400 hover:bg-gradient-to-b hover:from-cyan hover:to-lightBlue capitalize w-56 hover:cursor-pointer rounded-md py-1 shadow-custom;
+
+  & > button {
+    @apply bg-lightBlue text-white dark:bg-cyan dark:text-blueDark rounded-sm shadow-custom transition-all p-1 px-3 my-5 font-semibold;
+  }
+  & > section {
+    @apply w-full flex-center gap-5 lg:flex-col;
+
+    & > div {
+      @apply flex-center flex-col text-base dark:text-white/70 dark:font-outline-4 font-bold  flex-wrap;
+    }
+  }
+  & > ul {
+    @apply w-full flex-center flex-col mt-5 gap-5 lg:flex-row lg:flex-wrap;
+
+    & > li {
+      @apply bg-gradient-to-b from-lightBg2 to-lightBlue2 transition-all  flex-center flex-col dark:bg-gradient-to-t  dark:from-white dark:to-slate-400 hover:bg-gradient-to-b hover:from-cyan hover:to-lightBlue capitalize w-56 hover:cursor-pointer rounded-md py-1 shadow-md dark:shadow-custom;
+    }
+  }
 }
 /* JADWAL PAGE */
 
 /* PAGINATION */
 .container-pagination {
-  @apply w-full  items-center lg:mb-5 flex justify-evenly mt-7 flex-wrap;
+  @apply w-full md:w-96 lg:w-full  items-center lg:mb-5 flex justify-evenly mt-7 flex-wrap;
 }
 .container-pagination > .btn-page {
   @apply flex-center h-10  bg-cyan hover:bg-blue-600 transition-all duration-500  shadow-md rounded-sm p-2 font-bold  my-3 mx-5;

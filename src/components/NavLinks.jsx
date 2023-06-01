@@ -15,8 +15,8 @@ const NavLinks = () => {
               return isActive ? 'nav-link active-link ' : 'nav-link group';
             }}
           >
-            <Icon icon={icon} width="42" className="icon group-hover:text-blueDark" />
-            <h2 className=" group-hover:text-blueDark">{text}</h2>
+            <Icon icon={icon} width="42" className="icon dark:group-hover:text-blueDark group-hover:text-white" />
+            <h2 className=" dark:group-hover:text-blueDark group-hover:text-white">{text}</h2>
           </NavLink>
         );
       })}

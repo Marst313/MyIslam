@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+  darkMode: 'class',
   theme: {
     extend: {
       animation: {
@@ -23,6 +24,10 @@ export default {
         blueDark2: '#00337C',
         lightBlue: '#19A7CE',
         lightBlue2: '#146C94',
+
+        lightBg: '#AFD3E2',
+        lightBg2: '#19A7CE',
+        lightBg3: '#146C94',
 
         cyan: '#00FFD1',
         white: 'rgb(var(--white) / <alpha-value>)',

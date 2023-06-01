@@ -14,7 +14,7 @@ const Navbar = () => {
   return (
     <nav className="nav">
       <button type="button" onClick={handleOpenSidebar}>
-        <Icon icon="solar:hamburger-menu-outline" color="#00ffd1" />
+        <Icon icon="solar:hamburger-menu-outline" />
       </button>
       <h1>My Islam</h1>
       <ButtonDarkMode />

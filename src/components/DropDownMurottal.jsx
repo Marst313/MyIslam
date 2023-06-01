@@ -12,7 +12,7 @@ const DropDownMurottal = () => {
 
   return (
     <div>
-      <select name="murottals" id="murottals" className="bg-lightBlue font-semibold rounded-sm m-5 p-1 shadow-md text-sm  " onChange={handleChangeQari}>
+      <select name="murottals" id="murottals" className="bg-lightBlue font-semibold rounded-sm m-5 p-1 shadow-md text-sm  dark:bg-blueDark dark:text-cyan " onChange={handleChangeQari}>
         {murottals.map((qari) => {
           const { id, value, name } = qari;
           return (

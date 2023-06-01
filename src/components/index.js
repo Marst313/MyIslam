@@ -6,6 +6,7 @@ import DropDownMurottal from './DropDownMurottal';
 import Heading from './Heading';
 import LandingDecoration from './LandingDecoration';
 import Loading from './Loading';
+import LoadingMusic from './LoadingMusic';
 import Musicbar from './Musicbar';
 import Navbar from './Navbar';
 import NavLinks from './NavLinks';
@@ -25,6 +26,7 @@ export {
   ButtonDarkMode,
   LandingDecoration,
   Loading,
+  LoadingMusic,
   Musicbar,
   Navbar,
   NavLinks,

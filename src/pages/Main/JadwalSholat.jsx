@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Footer, Loading, SearchBar, Time } from '../../components/';
 import { useDispatch, useSelector } from 'react-redux';
 import { getGeolocation, getJadwalSholat, getLocation, handleSearchLocation, setError } from '../../features/jadwalSlice';
@@ -8,6 +8,7 @@ import Error from '../Error';
 const JadwalSholat = () => {
   const dispatch = useDispatch();
   const { dataLokasi, isLoading, jadwalSholat, search, currentLocation, error, errorMessage } = useSelector((store) => store.jadwal);
+  const [dataJadwal, setDataJadwal] = useState({});
 
   useEffect(() => {
     if (navigator.geolocation) {
@@ -24,7 +25,7 @@ const JadwalSholat = () => {
 
   useEffect(() => {
     if (dataLokasi.city) {
-      dispatch(getJadwalSholat(dataLokasi.city.toLowerCase()));
+      dispatch(getJadwalSholat(dataLokasi.localityInfo.administrative[2].name?.toLowerCase() || dataLokasi.city));
     }
   }, [dataLokasi]);
 
@@ -41,6 +42,18 @@ const JadwalSholat = () => {
     }
     /* */
   }, [currentLocation]);
+
+  useEffect(() => {
+    let date = new Date();
+
+    if (jadwalSholat.length > 0) {
+      const data = Object.entries(jadwalSholat).find((item) => {
+        return date.getDate() === +item[0] + 1;
+      });
+
+      setDataJadwal(data[1]);
+    }
+  }, []);
 
   if (isLoading) return <Loading />;
   return (
@@ -69,17 +82,15 @@ const JadwalSholat = () => {
           </section>
 
           <ul>
-            {Object.entries(jadwalSholat).length > 0
-              ? Object.entries(jadwalSholat).map((key, value) => {
-                  if (key[0] !== 'tanggal')
-                    return (
-                      <li key={key[0]}>
-                        <h3>{key[0]}</h3>
-                        <p>{key[1]}</p>
-                      </li>
-                    );
-                })
-              : ''}
+            {Object.entries(dataJadwal).map((key) => {
+              if (key[0] !== 'tanggal')
+                return (
+                  <li key={key[0]}>
+                    <h3>{key[0]}</h3>
+                    <p>{key[1]}</p>
+                  </li>
+                );
+            })}
           </ul>
         </>
       )}

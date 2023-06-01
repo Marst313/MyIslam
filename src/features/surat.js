@@ -17,6 +17,7 @@ const initialState = {
   duration: 0,
   openSurat: [],
   search: '',
+  isLoadingMusic: false,
 };
 const tafsirThunk = async (surat, thunkAPI) => {
   try {
@@ -53,7 +54,7 @@ export const suratSlice = createSlice({
   initialState,
   reducers: {
     setIsLoading: (state, { payload }) => {
-      state.isLoading = payload;
+      state.isLoadingMusic = payload;
     },
     handleSearchSurat: (state, { payload }) => {
       state.search = payload;

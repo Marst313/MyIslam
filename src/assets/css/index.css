@@ -47,17 +47,17 @@ select:-webkit-autofill:focus {
 }
 
 body {
-  @apply bg-primaryBg;
+  @apply dark:bg-primaryBg bg-lightBg;
 }
 
 h1 {
-  @apply text-3xl font-bold text-lightBlue;
+  @apply text-3xl font-bold text-blueDark dark:text-lightBlue;
 }
 
 h2 {
-  @apply text-lg font-semibold text-cyan text-center;
+  @apply text-lg font-semibold text-blueDark dark:text-cyan text-center;
 }
 
 hr {
-  @apply border-b-4 border-blueDark  w-full mb-2 shadow-lg shadow-white;
+  @apply border-b-4 border-blue-500  dark:border-blueDark  w-full mb-2 shadow-lg shadow-white;
 }

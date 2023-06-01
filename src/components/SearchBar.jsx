@@ -17,6 +17,7 @@ const SearchBar = ({ title }) => {
     e.preventDefault();
     if (!searchRef.current.value) return;
     if (title === 'Lokasi') {
+      console.log(searchRef.current.value);
       dispatch(handleSearchLocation(searchRef.current.value?.toLowerCase().trim()));
     }
     searchRef.current.value = '';

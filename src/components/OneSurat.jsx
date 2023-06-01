@@ -2,8 +2,9 @@ import number from '../assets/images/number.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { playAudio, setActiveQuran, setIsLoading } from '../features/surat';
+import Loading from './Loading';
 const OneSurat = ({ nomor, namaLatin: latin, jumlahAyat: ayat, tempatTurun, nama, audioFull }) => {
-  const { qari } = useSelector((store) => store.surat);
+  const { qari, isPlaying, isActive } = useSelector((store) => store.surat);
   const dispatch = useDispatch();
 
   let leftPosition = 'left-[3.5rem]';
@@ -14,12 +15,15 @@ const OneSurat = ({ nomor, namaLatin: latin, jumlahAyat: ayat, tempatTurun, nama
     dispatch(setIsLoading(true));
     const src = `${audioFull[qari]}`;
     const audio = new Audio(src);
+
     audio.addEventListener('canplaythrough', (e) => {
       dispatch(setIsLoading(false));
+
       let duration = audio.duration.toFixed();
       dispatch(setActiveQuran({ src, nomor, latin, ayat, tempatTurun, nama, duration, audioFull }));
       dispatch(playAudio());
     });
+
     audio.load();
   };
 

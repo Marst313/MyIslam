@@ -17,7 +17,7 @@ const Heading = () => {
         const { name, id, path } = type;
 
         return (
-          <button key={id} className={types === name ? 'bg-cyan  text-blueDark rounded-sm shadow-custom' : ''} onClick={() => handleClick(name)}>
+          <button key={id} className={types === name ? 'bg-lightBlue dark:bg-cyan  text-white dark:text-blueDark rounded-sm shadow-custom' : ''} onClick={() => handleClick(name)}>
             {name}
           </button>
         );
