@@ -28,7 +28,7 @@ const Doa = () => {
       <button>Doa</button>
       <hr />
       {doas.length === 0 ? (
-        <h1 className="text-center mt-10 text-cyan">Tidak ada doa yang dicari !</h1>
+        <h1 className="text-center my-10 dark:text-cyan ">Tidak ada doa yang dicari !</h1>
       ) : (
         <section>
           {doas?.map((doa, index) => {

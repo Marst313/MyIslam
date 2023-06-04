@@ -67,7 +67,7 @@
   @apply w-5 h-5;
 }
 .search-container > input {
-  @apply w-full p-2 pl-16  rounded-lg focus:outline-cyan dark:bg-blueDark placeholder:dark:text-white/50  focus:outline-double bg-lightBg2 placeholder:text-blueDark;
+  @apply w-full p-2 pl-16  rounded-lg focus:outline-cyan dark:bg-blueDark placeholder:dark:text-white/50  focus:outline-double bg-lightBg2 placeholder:text-blueDark dark:text-white;
 }
 /* SEARCH BAR */
 
@@ -110,10 +110,10 @@
     }
   }
   & > ul {
-    @apply w-full flex-center flex-col mt-5 gap-5 lg:flex-row lg:flex-wrap;
+    @apply w-full flex-center flex-col mt-5 gap-5 lg:flex-row lg:flex-wrap relative;
 
     & > li {
-      @apply bg-gradient-to-b from-lightBg2 to-lightBlue2 transition-all  flex-center flex-col dark:bg-gradient-to-t  dark:from-white dark:to-slate-400 hover:bg-gradient-to-b hover:from-cyan hover:to-lightBlue capitalize w-56 hover:cursor-pointer rounded-md py-1 shadow-md dark:shadow-custom;
+      @apply bg-gradient-to-b from-lightBg2 to-lightBlue2 transition-all  flex-center flex-col dark:bg-gradient-to-t  dark:from-white dark:to-slate-400 hover:bg-gradient-to-b hover:from-cyan hover:to-lightBlue capitalize w-56  dark:hover:bg-gradient-to-b dark:hover:from-cyan dark:hover:to-lightBlue hover:cursor-pointer rounded-md py-1 shadow-md dark:shadow-custom;
     }
   }
 }

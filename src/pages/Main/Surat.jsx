@@ -37,7 +37,7 @@ const Surat = () => {
           return <OneSurat key={index} {...item} />;
         })}
       </div>
-      {surat.length === 0 ? <h1 className="text-center mt-10 text-cyan">Tidak ada surat yang dicari !</h1> : <PaginationSurat />}
+      {surat.length === 0 ? <h1 className="text-center my-10 dark:text-cyan">Tidak ada surat yang dicari !</h1> : <PaginationSurat />}
       <Footer />
     </main>
   );

@@ -2,12 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { Footer, Loading, SearchBar, Time } from '../../components/';
 import { useDispatch, useSelector } from 'react-redux';
 import { getGeolocation, getJadwalSholat, getLocation, handleSearchLocation, setError } from '../../features/jadwalSlice';
-import { convert12HourTo24Hour } from '../../utils/helper';
 import Error from '../Error';
 
 const JadwalSholat = () => {
   const dispatch = useDispatch();
-  const { dataLokasi, isLoading, jadwalSholat, search, currentLocation, error, errorMessage } = useSelector((store) => store.jadwal);
+  const { dataLokasi, isLoading, jadwalSholat, search, currentLocation, error, errorMessage, allCity, id } = useSelector((store) => store.jadwal);
   const [dataJadwal, setDataJadwal] = useState({});
 
   useEffect(() => {
@@ -24,17 +23,18 @@ const JadwalSholat = () => {
   }, []);
 
   useEffect(() => {
-    if (dataLokasi.city) {
-      dispatch(getJadwalSholat(dataLokasi.localityInfo.administrative[2].name?.toLowerCase() || dataLokasi.city));
-    }
-  }, [dataLokasi]);
-
-  useEffect(() => {
     if (search) {
       dispatch(getGeolocation(search));
       dispatch(handleSearchLocation(search));
+      dispatch(getJadwalSholat(id));
     }
   }, [search]);
+
+  useEffect(() => {
+    if (Object.entries(jadwalSholat).length > 0) {
+      setDataJadwal(jadwalSholat.jadwal.data);
+    }
+  }, [jadwalSholat]);
 
   useEffect(() => {
     if (currentLocation.address) {
@@ -42,18 +42,6 @@ const JadwalSholat = () => {
     }
     /* */
   }, [currentLocation]);
-
-  useEffect(() => {
-    let date = new Date();
-
-    if (jadwalSholat.length > 0) {
-      const data = Object.entries(jadwalSholat).find((item) => {
-        return date.getDate() === +item[0] + 1;
-      });
-
-      setDataJadwal(data[1]);
-    }
-  }, []);
 
   if (isLoading) return <Loading />;
   return (
@@ -70,7 +58,7 @@ const JadwalSholat = () => {
             <Time />
             <div>
               {currentLocation.resolvedAddress ? (
-                <h3>{currentLocation.resolvedAddress}</h3>
+                <h3>{currentLocation.resolvedAddress || search}</h3>
               ) : (
                 <>
                   <h3>{dataLokasi.locality},</h3>
@@ -82,15 +70,27 @@ const JadwalSholat = () => {
           </section>
 
           <ul>
-            {Object.entries(dataJadwal).map((key) => {
-              if (key[0] !== 'tanggal')
+            {Object.entries(dataJadwal).length > 0 ? (
+              Object.entries(dataJadwal).map((key, index) => {
+                if (key[0] === 'tanggal' || key[0] === 'terbit') {
+                  return (
+                    <li className="capitalize order-first  ">
+                      <h3>{key[0]}</h3>
+                      <p>{key[1]}</p>
+                    </li>
+                  );
+                }
+
                 return (
-                  <li key={key[0]}>
+                  <li key={index}>
                     <h3>{key[0]}</h3>
                     <p>{key[1]}</p>
                   </li>
                 );
-            })}
+              })
+            ) : (
+              <h1>Silahkan mencari jadwal Shalat... </h1>
+            )}
           </ul>
         </>
       )}

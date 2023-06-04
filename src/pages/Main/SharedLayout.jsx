@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getSurat, setMusicBar } from '../../features/surat';
 import { useEffect, useRef } from 'react';
 import { getDoa } from '../../features/doa';
+import { getAllCity } from '../../features/jadwalSlice';
 
 const SharedLayout = () => {
   const { isActive, currentSurat } = useSelector((store) => store.surat);
@@ -24,6 +25,7 @@ const SharedLayout = () => {
   useEffect(() => {
     dispatch(getSurat());
     dispatch(getDoa());
+    dispatch(getAllCity());
 
     const handleScroll = () => {
       if (window.scrollY > 0) {

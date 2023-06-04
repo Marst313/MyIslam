@@ -9,7 +9,8 @@ export const customFetchDoa = axios.create({
 });
 
 export const customFetchJadwal = axios.create({
-  baseURL: 'https://cdn.statically.io/gh/lakuapik/jadwalsholatorg/master/adzan/',
+  baseURL: 'https://private-amnesiac-57e33-fathimah.apiary-proxy.com/sholat/format//jadwal/kota/',
+  headers: { 'Content-Type': 'application/json' },
 });
 
 export const customFetchGeolocation = axios.create({
@@ -17,4 +18,8 @@ export const customFetchGeolocation = axios.create({
   params: {
     key: import.meta.env.VITE_GEO_API_KEY,
   },
+});
+
+export const customFetchAllCity = axios.create({
+  baseURL: 'https://api.banghasan.com/sholat/format/json/kota',
 });

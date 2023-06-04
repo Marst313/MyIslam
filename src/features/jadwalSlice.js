@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
-import { customFetchGeolocation, customFetchJadwal } from '../utils/axios';
+import { allCityThunk, geoLocationThunk, jadwalThunk, locationThunk } from './jadwalThunk';
 
 const initialState = {
   search: '',
@@ -10,38 +9,11 @@ const initialState = {
   isLoading: true,
   currentLocation: {},
   errorMessage: '',
+  allCity: [],
+  id: 0,
 };
 
-const locationThunk = async (lokasi, thunkAPI) => {
-  try {
-    const resp = await axios.get(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lokasi.lat}&longitude=${lokasi.longt}&localitiLanguage=en`);
-
-    return resp.data;
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error.response.data.message);
-  }
-};
-const jadwalThunk = async (lokasi, thunkAPI) => {
-  try {
-    let date = new Date();
-
-    const resp = await customFetchJadwal(`${lokasi}/${date.getFullYear()}/${date.getMonth() + 1 < 10 ? `0${date.getMonth() + 1}` : date.getMonth()}.json`);
-    return resp.data;
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error.response.data.message);
-  }
-};
-
-const geoLocationThunk = async (lokasi, thunkAPI) => {
-  try {
-    const resp = await customFetchGeolocation(`${lokasi}?`);
-
-    return resp.data;
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error.response.data);
-  }
-};
-
+export const getAllCity = createAsyncThunk('city', allCityThunk);
 export const getGeolocation = createAsyncThunk('geolocation', geoLocationThunk);
 export const getJadwalSholat = createAsyncThunk('jadwalSholat', jadwalThunk);
 export const getLocation = createAsyncThunk('location', locationThunk);
@@ -53,6 +25,14 @@ export const jadwalSlice = createSlice({
     handleSearchLocation: (state, { payload }) => {
       state.search = payload;
     },
+    handleSearchJadwal: (state, { payload }) => {
+      state.search = payload.nama;
+      if (payload.nama.includes('kota')) {
+        state.search = payload.nama.replace('kota', '').trim();
+      }
+      state.id = payload.id;
+    },
+
     setError: (state, { payload }) => {
       state.error = payload.error;
       state.isLoading = false;
@@ -71,21 +51,22 @@ export const jadwalSlice = createSlice({
       })
       .addCase(getLocation.rejected, (state) => {
         state.isLoading = false;
+
         state.error = 1;
-        state.errorMessage = 'Cannot get your location please turn on your gps !';
+        state.errorMessage = 'Tidak bisa menampilkan lokasi hidupkan GPS anda !!!';
       })
       .addCase(getJadwalSholat.pending, (state) => {
         state.error = 0;
         state.isLoading = true;
       })
-      .addCase(getJadwalSholat.fulfilled, (state, action) => {
+      .addCase(getJadwalSholat.fulfilled, (state, { payload }) => {
         state.isLoading = false;
-        state.jadwalSholat = action.payload;
+        state.jadwalSholat = payload;
       })
       .addCase(getJadwalSholat.rejected, (state) => {
         state.isLoading = false;
         state.error = 1;
-        state.errorMessage = `Cannot find your city (${state.search}) try another city !`;
+        state.errorMessage = `Tidak bisa menemukan jadwal Shalat di ${state.search} !!!`;
       })
       .addCase(getGeolocation.pending, (state) => {
         state.isLoading = true;
@@ -95,13 +76,23 @@ export const jadwalSlice = createSlice({
         state.error = 0;
         state.currentLocation = { latitude: payload.latitude, longitude: payload.longitude, address: payload.address, ...payload };
       })
-      .addCase(getGeolocation.rejected, (state, action) => {
+      .addCase(getGeolocation.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.error = 1;
-        state.errorMessage = `Silahkan cari ulang tidak ada kota dengan nama ${action.meta.arg} !!!`;
+        state.errorMessage = payload;
+      })
+      .addCase(getAllCity.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getAllCity.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.allCity = payload;
+      })
+      .addCase(getAllCity.rejected, (state, action) => {
+        state.isLoading = false;
       });
   },
 });
 
-export const { handleSearchLocation, setError } = jadwalSlice.actions;
+export const { handleSearchLocation, handleSearchJadwal, setError } = jadwalSlice.actions;
 export default jadwalSlice.reducer;
