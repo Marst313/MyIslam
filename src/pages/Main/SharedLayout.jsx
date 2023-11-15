@@ -49,7 +49,7 @@ const SharedLayout = () => {
           icon="material-symbols:keyboard-arrow-up-rounded"
           className={`${!isActive ? 'translate-y-0' : 'translate-y-96'} ${
             Object.values(currentSurat).length > 0 ? 'flex' : 'hidden'
-          } transition-all w-10 h-10 fixed bottom-16 right-0 bg-lightBlue bg-opacity-70 backdrop-blur-sm rounded-sm  text-blueDark mr-5  z-10 shadow-custom hover:bg-opacity-50`}
+          } transition-all w-10 h-10 fixed bottom-16 right-0 bg-lightBlue bg-opacity-70 backdrop-blur-sm rounded-sm  text-blueDark mr-5  z-10 shadow-custom hover:bg-opacity-50 w `}
         />
       </button>
 

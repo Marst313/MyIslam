@@ -13,7 +13,7 @@ const BigSidebar = () => {
     dispatch(closeSidebar());
   };
   return (
-    <aside className={`${isSidebarOpen ? 'lg:translate-x-0' : 'lg:-translate-x-full'} container-sidebar`}>
+    <aside className={`${isSidebarOpen ? 'lg:translate-x-0 ' : 'lg:-translate-x-full'} container-sidebar `}>
       <button type="button" onClick={handleCloseSidebar}>
         <Icon icon="ic:round-close" />
       </button>
